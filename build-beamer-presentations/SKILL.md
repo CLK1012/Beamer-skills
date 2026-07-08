@@ -14,6 +14,7 @@ Use this skill to design Beamer decks from composable LaTeX elements rather than
    - Navigation, section numbering, subsection dots, and hyperlinks: read `references/navigation.md`.
    - Boxed text blocks, rounded tag blocks, equal-height columns, and image/caption layouts: read `references/blocks-and-layouts.md`.
    - TikZ process diagrams, circular-arrow loops, and curved-arrow flow visuals: read `references/tikz-diagrams.md`.
+   - Overflow prevention, table-of-contents layout, footer-safe zones, and palette consistency: read `references/layout-quality.md`.
 3. Compile with XeLaTeX for Chinese Beamer decks:
    ```bash
    latexmk -xelatex -interaction=nonstopmode deck.tex
@@ -28,14 +29,18 @@ Use this skill to design Beamer decks from composable LaTeX elements rather than
    ```bash
    rg -n "Warning|Overfull|Underfull|Error|Undefined|Missing character" deck.log
    ```
+   Treat `Overfull \hbox` and `Overfull \vbox` as layout failures when they correspond to visible block, page, or footer overlap.
 
 ## Design Defaults
 
 - Prefer `ctexbeamer` with `xelatex` for Chinese decks.
 - Keep the first screen as the actual slide content unless the user asks for a landing/cover-only experience.
 - Use restrained colors: one main color, one accent, and semantic alert/example colors.
+- Keep semantic colors within the same palette family unless contrast has a clear purpose. For a brick-red theme, choose nearby reds, rose, coral, amber, or muted brown rather than a sudden saturated green.
 - Prefer left-right side-by-side text blocks for content pages when the material can be grouped into two or three comparable parts. Fall back to vertical stacked blocks only when the content is sequential, hierarchical, or too narrow for side-by-side reading.
 - Keep block cards compact. Use equal-height minipages in side-by-side layouts to avoid ragged visual rhythm.
+- Keep all visible content inside the slide body. Do not let blocks or text cover the lower-right footer/page label area.
+- If dense content remains important after compression, split it into additional frames instead of forcing every detail onto one slide.
 - For navigation, treat short section titles as "chapters" and subsection dots as "nodes/sections within the chapter"; do not count chapter title pages as dots.
 - Use TikZ for reusable vector diagrams. Avoid raster screenshots for process diagrams unless the user provides a required image.
 - Choose diagram styles by intent and follow the sample code closely:
