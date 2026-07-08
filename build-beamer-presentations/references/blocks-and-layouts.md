@@ -2,6 +2,14 @@
 
 Use this reference for Beamer boxed text blocks, equal-height columns, custom rounded tag blocks, and image/caption layouts.
 
+## Layout Selection
+
+- Prefer left-right side-by-side text blocks for most content slides. They scan well, make comparison easy, and keep reusable templates visually stable.
+- Use two columns when each side carries a comparable idea, argument, method, evidence set, or result.
+- Use three columns when presenting parallel categories such as "background / method / result" or "problem / action / outcome".
+- Use vertical stacked blocks only when the content is inherently sequential, hierarchical, or too dense for columns.
+- In side-by-side layouts, keep blocks equal height with fixed-height `minipage`s. If one block has less text, preserve empty space instead of shrinking the block.
+
 ## Standard Beamer Blocks
 
 ```tex

@@ -34,9 +34,14 @@ Use this skill to design Beamer decks from composable LaTeX elements rather than
 - Prefer `ctexbeamer` with `xelatex` for Chinese decks.
 - Keep the first screen as the actual slide content unless the user asks for a landing/cover-only experience.
 - Use restrained colors: one main color, one accent, and semantic alert/example colors.
+- Prefer left-right side-by-side text blocks for content pages when the material can be grouped into two or three comparable parts. Fall back to vertical stacked blocks only when the content is sequential, hierarchical, or too narrow for side-by-side reading.
 - Keep block cards compact. Use equal-height minipages in side-by-side layouts to avoid ragged visual rhythm.
 - For navigation, treat short section titles as "chapters" and subsection dots as "nodes/sections within the chapter"; do not count chapter title pages as dots.
 - Use TikZ for reusable vector diagrams. Avoid raster screenshots for process diagrams unless the user provides a required image.
+- Choose diagram styles by intent and follow the sample code closely:
+  - Linear workflow, project stages, or method sequence: use the horizontal process flow.
+  - Iteration, feedback, management loop, or quality improvement cycle: use the circular arrow loop.
+  - Development path, capability growth, strategic progress, or research trajectory: use the curved gradient progress arrow.
 
 ## Implementation Notes
 

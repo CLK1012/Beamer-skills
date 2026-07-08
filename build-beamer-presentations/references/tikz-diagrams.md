@@ -2,6 +2,16 @@
 
 Use this reference for Beamer pages where arrows or diagrams are the main visual element.
 
+## Style Selection
+
+Pick the diagram by communicative intent, then copy the matching sample as the starting point and tune coordinates minimally.
+
+- Use **Horizontal Process With Feedback Arrow** for linear workflows, implementation plans, research procedures, and project stages. Keep the main direction left-to-right and reserve the lower red arrow for feedback or iteration.
+- Use **Circular Arrow Loop** for closed-loop mechanisms, management cycles, quality improvement, model iteration, and feedback systems. Keep nodes and arc arrows on the same radius; do not let adjacent colored arrows overlap nodes.
+- Use **Curved Gradient Arrow With Horizontal Text** for progress, growth, capability transition, strategic advancement, or research trajectories. Keep labels horizontal, place text blocks along the curve, and align the arrowhead with the final curve tangent.
+
+Follow the sample code strictly for the first implementation. Adjust only node text, colors, coordinates, and spacing after rendering the PDF and checking the visual result.
+
 ## Preamble
 
 ```tex
