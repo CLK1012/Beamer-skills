@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Beamer Presentations"
+  short_description: "Reusable LaTeX Beamer slide components"
+  default_prompt: "Use $build-beamer-presentations to create a polished LaTeX Beamer presentation with custom navigation, blocks, images, and diagrams."
