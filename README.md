@@ -16,7 +16,7 @@ For diagram pages, choose the sample by intent and follow the reference code clo
 - Iteration or feedback cycle: circular arrow loop.
 - Development path, capability growth, or strategic progress: curved gradient progress arrow.
 
-Also enforce visual quality: fix visible overflow even when LaTeX only reports a warning, reserve the lower-right footer/page-number area, balance table-of-contents pages in columns, and keep block colors within one coherent palette family.
+Also enforce visual quality: estimate block text capacity before writing dense content, fix visible overflow even when LaTeX only reports a warning, reserve the lower-right footer/page-number area, balance table-of-contents pages in columns, and keep block colors within one coherent palette family.
 
 ## Installation
 

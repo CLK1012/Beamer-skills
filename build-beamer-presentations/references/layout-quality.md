@@ -8,9 +8,58 @@ LaTeX often compiles even when text visibly leaves a block or overlaps another e
 
 Always render the affected PDF page after compiling and inspect it. A clean-looking slide matters more than a merely successful compile.
 
+## Measured Text Capacity
+
+These estimates are based on `ctexbeamer` with XeLaTeX in a 16:9 Beamer deck where `\textwidth` measured about `398.34pt`. Measured CJK character widths and baselines were:
+
+- `\small`: CJK char about `10pt`, baseline about `12pt`.
+- `\footnotesize`: CJK char about `9pt`, baseline about `11pt`.
+- `\scriptsize`: CJK char about `8pt`, baseline about `9.5pt`.
+
+The table below is intentionally conservative for bullet-list blocks. It reserves room for itemize indentation, box padding, and visual breathing space. For plain paragraphs without bullets, allow about 2 to 4 extra CJK characters per line.
+
+### Suggested CJK Characters Per Line
+
+Use the block body width as a fraction of `\textwidth`.
+
+| Body width | Typical use | `\small` | `\footnotesize` | `\scriptsize` |
+|---:|---|---:|---:|---:|
+| `0.31\textwidth` | 3-column block | 8 | 9 | 11 |
+| `0.36\textwidth` | loose 3-column block | 10 | 11 | 12 |
+| `0.42\textwidth` | image/text left block | 12 | 13 | 15 |
+| `0.48\textwidth` | 2-column block | 13 | 15 | 17 |
+| `0.54\textwidth` | wide 2-column block | 15 | 17 | 19 |
+| `0.62\textwidth` | wide text block | 17 | 19 | 22 |
+| `0.90\textwidth` | near-full-width body | 25 | 28 | 32 |
+
+### Suggested Lines By Inner Text Height
+
+Use this when the `minipage` height is the actual text body height inside a block.
+
+| Inner text height | `\small` | `\footnotesize` | `\scriptsize` |
+|---:|---:|---:|---:|
+| `2.0cm` | 4 | 4 | 5 |
+| `2.5cm` | 5 | 5 | 6 |
+| `3.0cm` | 6 | 6 | 7 |
+| `3.5cm` | 7 | 7 | 9 |
+| `4.0cm` | 8 | 9 | 10 |
+
+If the height is the outer block height including the colored title bar, subtract about `0.75cm` before using the table. For example, a `3.0cm` outer block leaves roughly `2.25cm` of body text, so plan for about 4 to 5 lines, not 6 to 7.
+
+### Capacity Rule Of Thumb
+
+For each block, estimate:
+
+```text
+capacity ~= suggested characters per line * suggested lines
+```
+
+Use no more than about 80 percent of that capacity in the first draft. Example: a `0.31\textwidth` three-column block with `\footnotesize` and `3.0cm` inner height supports about `9 * 6 = 54` CJK characters in bullet text; keep the first draft around 40 to 45 CJK characters, then render and inspect.
+
 ## Overflow Decision Rules
 
 - If a block, box, or text region exceeds the slide page, first reduce or compress the content and keep the box inside the page.
+- Before laying out dense slides, estimate each block's capacity from the tables above and keep the first draft below about 80 percent of that capacity.
 - If content is too verbose for a block, shorten bullets before shrinking the font. Prefer noun phrases and short clinical/research terms over full sentences.
 - If the overflowing details are important and cannot be responsibly removed, split the material into more frames instead of over-compressing one slide. Create additional `\subsection` nodes when the new pages should appear as progress dots.
 - If the content still does not fit, reduce local font size one step at a time: `\small`, then `\footnotesize`, then `\scriptsize`. Avoid going smaller than `\scriptsize` for normal reading slides.

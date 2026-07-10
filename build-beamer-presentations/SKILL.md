@@ -40,6 +40,7 @@ Use this skill to design Beamer decks from composable LaTeX elements rather than
 - Prefer left-right side-by-side text blocks for content pages when the material can be grouped into two or three comparable parts. Fall back to vertical stacked blocks only when the content is sequential, hierarchical, or too narrow for side-by-side reading.
 - Keep block cards compact. Use equal-height minipages in side-by-side layouts to avoid ragged visual rhythm.
 - Keep all visible content inside the slide body. Do not let blocks or text cover the lower-right footer/page label area.
+- Estimate text capacity before writing dense block content. Use the measured capacity tables in `references/layout-quality.md` instead of discovering overflow only after compiling.
 - If dense content remains important after compression, split it into additional frames instead of forcing every detail onto one slide.
 - For navigation, treat short section titles as "chapters" and subsection dots as "nodes/sections within the chapter"; do not count chapter title pages as dots.
 - Use TikZ for reusable vector diagrams. Avoid raster screenshots for process diagrams unless the user provides a required image.
