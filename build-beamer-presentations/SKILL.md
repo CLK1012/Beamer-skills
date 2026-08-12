@@ -19,12 +19,13 @@ Use this skill to design Beamer decks from composable LaTeX elements rather than
    ```bash
    latexmk -xelatex -interaction=nonstopmode deck.tex
    ```
-4. Validate visually, not only by log success. Render key pages:
+4. Validate visually, not only by log success. Render every affected page that contains changed blocks, tables, or images:
    ```bash
    gs -q -dNOPAUSE -dBATCH -sDEVICE=pngalpha -r170 \
      -dFirstPage=PAGE -dLastPage=PAGE \
      -sOutputFile=/tmp/beamer_check.png deck.pdf
    ```
+   Inspect both overflow and underfill. A block with a large accidental empty area below its last line is a layout defect even when all text remains inside the border. Compare top and bottom padding, nearby block boundaries, and shared anchor lines such as titles, dates, table headers, and first bullets.
 5. Scan logs and fix real issues:
    ```bash
    rg -n "Warning|Overfull|Underfull|Error|Undefined|Missing character" deck.log
@@ -38,7 +39,8 @@ Use this skill to design Beamer decks from composable LaTeX elements rather than
 - Use restrained colors: one main color, one accent, and semantic alert/example colors.
 - Keep semantic colors within the same palette family unless contrast has a clear purpose. For a brick-red theme, choose nearby reds, rose, coral, amber, or muted brown rather than a sudden saturated green.
 - Prefer left-right side-by-side text blocks for content pages when the material can be grouped into two or three comparable parts. Fall back to vertical stacked blocks only when the content is sequential, hierarchical, or too narrow for side-by-side reading.
-- Keep block cards compact. Use equal-height minipages in side-by-side layouts to avoid ragged visual rhythm.
+- Keep block cards compact. Do not leave large accidental empty areas below short content. Correct underfilled blocks by increasing readable font size or line/item spacing, reducing block height, or repositioning the block group within the body.
+- In side-by-side layouts, preserve intentional alignment before redistributing whitespace: align corresponding title/date/header/first-content anchors, and keep peer block top and bottom edges aligned when they form one comparison row. Do not vertically center one short block independently when that makes its key anchors drift from adjacent blocks.
 - Keep all visible content inside the slide body. Do not let blocks or text cover the lower-right footer/page label area.
 - Estimate text capacity before writing dense block content. Use the measured capacity tables in `references/layout-quality.md` instead of discovering overflow only after compiling.
 - If dense content remains important after compression, split it into additional frames instead of forcing every detail onto one slide.
