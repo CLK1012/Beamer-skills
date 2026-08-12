@@ -6,7 +6,30 @@ Use this reference whenever a deck has dense text blocks, a table-of-contents pa
 
 LaTeX often compiles even when text visibly leaves a block or overlaps another element. `Overfull \hbox` and `Overfull \vbox` usually appear as warnings, not hard errors. Treat these warnings as visual defects when they correspond to content blocks, columns, footers, navigation bars, captions, or page boundaries.
 
-Always render the affected PDF page after compiling and inspect it. A clean-looking slide matters more than a merely successful compile.
+Always render every affected PDF page after compiling and inspect it. A clean-looking slide matters more than a merely successful compile. Check both directions: text must not overflow, and fixed-height blocks must not retain a large accidental empty area below their final line.
+
+## Vertical Balance And Underfilled Blocks
+
+Treat conspicuous unused space at the bottom of a text block as a layout defect unless it is clearly intentional breathing room. A successful compile and a clean overflow log do not detect this problem.
+
+Use this correction order:
+
+1. Increase body font size when the current text is unnecessarily small and the change remains consistent with nearby blocks.
+2. Increase line spacing or `itemize` `\itemsep` when the content density can support a more relaxed reading rhythm.
+3. Reduce the fixed block height when enlarging text or spacing would look forced.
+4. Reposition the block pair or group within the slide body so the whitespace above and below the group is balanced.
+5. Add or remove content only when the information architecture, not merely the geometry, requires it.
+
+After each change, render the slide again. Compare the distance from the last baseline to the bottom border with the block's top padding and normal inter-item rhythm. Do not aim for zero whitespace; retain a clear safety margin, but avoid a bottom void equivalent to several unused text lines.
+
+For parallel or repeated blocks, preserve the visual system while correcting underfill:
+
+- Align key anchor lines such as block titles, date labels, table headers, and the first content line.
+- Keep top and bottom borders aligned when blocks are semantic peers in one row.
+- If peer blocks contain different amounts of text, first vary local item spacing within the shorter block while preserving anchors and shared borders.
+- If the content disparity is too large for equal-height peers, use intentionally different heights only with a coherent alignment rule, such as aligned centers or a clearly staggered hierarchy.
+- Do not apply `valign=center` to only one peer block when that shifts its title or first bullet away from adjacent anchors.
+- For tables, keep header text horizontally and vertically centered in the header row, and preserve consistent row heights across comparable tables.
 
 ## Measured Text Capacity
 
@@ -64,7 +87,7 @@ Use no more than about 80 percent of that capacity in the first draft. Example: 
 - If the overflowing details are important and cannot be responsibly removed, split the material into more frames instead of over-compressing one slide. Create additional `\subsection` nodes when the new pages should appear as progress dots.
 - If the content still does not fit, reduce local font size one step at a time: `\small`, then `\footnotesize`, then `\scriptsize`. Avoid going smaller than `\scriptsize` for normal reading slides.
 - If a box is too small but the page has room, increase the box height or width. For parallel boxes, set all boxes to the height required by the longest box and let shorter boxes keep whitespace.
-- If several parallel boxes have different text amounts, do not let one box protrude downward. Use the longest-content box as the shared minipage height and leave empty space in shorter boxes.
+- If several parallel boxes have different text amounts, do not let one box protrude downward. Prefer a shared height when they are semantic peers, then distribute the shorter block's content without breaking title/header/first-line anchors. If that produces a conspicuous bottom void, reduce the shared height or adopt an intentional staggered layout instead of accepting dead space.
 - Do not solve overflow by letting text run into slide margins, navigation bars, captions, or footers.
 
 ## Footer-Safe Zone
